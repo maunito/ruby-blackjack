@@ -3,6 +3,7 @@ require_relative "croupier"
 puts "welcome to blackjack"
 
 
+
 dealer_score = pick_dealer_score
 
 player_score = pick_player_card
