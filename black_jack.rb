@@ -1,22 +1,28 @@
+# Next step is to include a deck of 52 cards 
+# which puts pulled cards aside and 
+# takes into account that A can be 1 or 11"
 
-cards = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10, J, J, J, J, Q, Q, Q, Q, K, K, K, K, A, A, A, A]
-J = 10
-Q = 10
-K = 10
-A = 11
 
-def pick_dealer_score
-  dealer_card1 = rand(1..11)
+def pick_dealer_score(values)
+ 
+
+  dealer_card1 = values.sample
   dealer_score = dealer_card1
-  dealer_score = 11 if dealer_card1 == 1
+  # dealer_score = 11 if dealer_card1 == 1
   return dealer_score
 end
 
-def pick_player_card
-  player_card1 = rand(1..11)
-  player_card2 = rand(1..11)
+def player_start(values)
+
+  player_card1 = values.sample
+  player_card2 = values.sample
   player_score = player_card1 + player_card2
   player_score -= 10 if player_score == 22
   puts "you have #{player_card1} and #{player_card2}"
   return player_score
+end
+
+def player_pick_another_card(values)
+  random_card = values.sample
+  return random_card
 end

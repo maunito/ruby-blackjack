@@ -1,12 +1,18 @@
 require_relative "croupier"
+require_relative "black_jack"
+
+j = 10
+q = 10
+k = 10
+a = 11
+
+values = [2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k, a]
 
 puts "welcome to blackjack"
 
+dealer_score = pick_dealer_score(values)
 
-
-dealer_score = pick_dealer_score
-
-player_score = pick_player_card
+player_score = player_start(values)
 
 puts state_of_the_game(player_score, dealer_score)
 
@@ -15,9 +21,9 @@ answer = gets.chomp
 
 
 until answer == "no" || answer == "n" || player_score >= 21 do
-  player_card3 = rand(1..11)
-  player_score += player_card3
-  puts "You pulled a #{player_card3}"
+  puts player_pick_another_card(values)
+  player_score += random_card
+  puts "You pulled a #{random_card}"
   puts state_of_the_game(player_score, dealer_score)
   if player_score < 21
     puts "another card?"
