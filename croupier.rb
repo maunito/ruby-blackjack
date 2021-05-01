@@ -1,9 +1,9 @@
 require_relative 'black_jack'
 
-def sleep_and_line_break
+def sleep_and_line_break(n)
   1.upto(1) do
     puts '.'
-    sleep 0.5 # second
+    sleep n # second
   end
 end
 
