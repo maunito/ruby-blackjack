@@ -30,32 +30,17 @@ elsif player_score < 21
     random_card = values.sample
     player_score += random_card
     puts "You pulled a #{random_card}"
-    1.upto(1) do
-      puts '.'
-      sleep 0.5 # second
-    end
+    sleep_and_line_break
     puts state_of_the_game(player_score, dealer_score)
-    1.upto(1) do
-      puts '.'
-      sleep 0.5 # second
-    end
+    sleep_and_line_break
     if player_score < 21
       puts 'another card? [ y / n ]'
-      1.upto(1) do
-        puts '.'
-        sleep 0.5 # second
-      end
+      sleep_and_line_break
       answer = gets.chomp
-      1.upto(1) do
-        puts '.'
-        sleep 0.5 # second
-      end
+      sleep_and_line_break
     elsif player_score == 21
       '21!'
-      1.upto(1) do
-        puts '.'
-        sleep 0.5 # second
-      end
+      sleep_and_line_break
     end
   end
 end
