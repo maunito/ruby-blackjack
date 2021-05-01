@@ -1,52 +1,71 @@
-require_relative "croupier"
-require_relative "black_jack"
+require_relative 'croupier'
+require_relative 'black_jack'
 
-j = 10
-q = 10
-k = 10
-a = 11
+J = 10
+Q = 10
+K = 10
+A = 11
 
-values = [2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k, a]
+values = [2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A]
 
-puts "welcome to blackjack"
+puts 'Welcome to Blackjack'
+sleep_and_line_break
 
-dealer_score = pick_dealer_score(values)
+dealer_score = values.sample
 
 player_score = player_start(values)
+sleep_and_line_break
 
 puts state_of_the_game(player_score, dealer_score)
+sleep_and_line_break
 
-puts "another card? [ y / n ]"
-answer = gets.chomp
-
-
-until answer == "no" || answer == "n" || player_score >= 21 do
-  puts player_pick_another_card(values)
-  player_score += random_card
-  puts "You pulled a #{random_card}"
-  puts state_of_the_game(player_score, dealer_score)
-  if player_score < 21
-    puts "another card?"
-    answer = gets.chomp
+if player_score == 21
+  puts 'Blackjack!'
+elsif player_score < 21
+  puts 'another card? [ y / n ]'
+  sleep_and_line_break
+  answer = gets.chomp
+  sleep_and_line_break
+  until answer == 'no' || answer == 'n' || player_score >= 21 
+    random_card = values.sample
+    player_score += random_card
+    puts "You pulled a #{random_card}"
+    1.upto(1) do
+      puts '.'
+      sleep 0.5 # second
+    end
+    puts state_of_the_game(player_score, dealer_score)
+    1.upto(1) do
+      puts '.'
+      sleep 0.5 # second
+    end
+    if player_score < 21
+      puts 'another card? [ y / n ]'
+      1.upto(1) do
+        puts '.'
+        sleep 0.5 # second
+      end
+      answer = gets.chomp
+      1.upto(1) do
+        puts '.'
+        sleep 0.5 # second
+      end
+    elsif player_score == 21
+      '21!'
+      1.upto(1) do
+        puts '.'
+        sleep 0.5 # second
+      end
+    end
   end
 end
 
-until dealer_score >= 17 do
-  dealer_card2 = rand(1..11)
+until dealer_score >= 17
+  (dealer_card2 = values.sample)
   dealer_score += dealer_card2
   puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
+  sleep_and_line_break
 end
+
+
 puts end_game_message(player_score, dealer_score)
-
-
-
-
-
-
-
-
-
-
-
-# TODO: make the user play from terminal in a while loop that will stop
-#       when the user will not be asking for  a new card

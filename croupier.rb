@@ -1,21 +1,28 @@
 require_relative 'black_jack'
 
+def sleep_and_line_break
+  1.upto(1) do
+    puts '.'
+    sleep 0.5 # second
+  end
+end
+
 def state_of_the_game(player_score, pick_dealer_score)
-  return "Your score is #{player_score} The dealer's score is #{pick_dealer_score}."
+  "Your score is #{player_score} The dealer's score is #{pick_dealer_score}."
 end
 
 def end_game_message(player_score, dealer_score)
   if player_score == 21
-    return "Blackjack"
+    'Wow! You won'
   elsif player_score > 21
-    return "Over 21, you lost"
+    'Over 21, you lost'
   elsif dealer_score > 21
-    return "you won"
+    'you won'
   elsif player_score == dealer_score
-    return "Push"
+    'Push'
   elsif player_score > dealer_score 
-    return "You won"
-  elsif player_score < dealer_score && dealer_score <= 21 
-    return "You lost"
+    'You won'
+  elsif player_score < dealer_score && dealer_score <= 21
+    'You lost'
   end
 end
