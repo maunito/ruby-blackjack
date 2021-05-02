@@ -4,6 +4,9 @@
 # ends game if player draws a blackjack
 # deleted unnecessary methods
 # sleep function for better experience
+# implement money system which iterates until money == 0
+# make bets variable
+# 
 
 def player_start(values)
   player_card1 = values.sample
