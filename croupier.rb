@@ -13,8 +13,17 @@
 # double bet is impossible if player has insufficient money
 
 # if double == true, player is not asked for a 4th card
+# Player has to confirm with enter to continue
+
+# refactored if statements
 # puts pulled cards aside and
 # takes into account that A can be 1 or 11"
+
+
+def new_game
+  sleep(0.5)
+  puts '----------------------------------------------'
+end
 
 
 def player_start(values, bet)
@@ -23,23 +32,26 @@ def player_start(values, bet)
   player_score = player_card1 + player_card2
   player_score -= 10 if player_score == 22
   puts "you have #{player_card1} and #{player_card2}"
+  gets.chomp
   if $money >= 5 && player_score < 21
     puts 'Do you want to double your bet and draw 1 more card? [ y / n ]'
+    # puts 'Do you want to'
+    # puts '1) draw another card'
+    # puts '2) double bet'
+    # puts '3) hold'
     double_bet = gets.chomp
+    puts ""
+
     if double_bet == 'y' || double_bet == 'yes'
       $money -= bet
       puts "you bet another #{bet}$"
+      gets.chomp
       $double = true
     else
       $double = false
     end
   end
   player_score
-end
-
-def new_game
-  sleep(0.5)
-  puts '----------------------------------------------'
 end
 
 def sleep_and_line_break(n)
@@ -53,7 +65,7 @@ def state_of_the_game(player_score, pick_dealer_score)
   "Your score is #{player_score} - The dealer's score is #{pick_dealer_score}."
 end
 
-def end_game_message(player_score, dealer_score, money, bet)
+def end_game_message(player_score, dealer_score, bet)
   if player_score == 21
     if $double == true
       $money += (bet * 4) # 1 (bet) + 1.5 (blackjack) * 1 (double)
@@ -77,7 +89,7 @@ def end_game_message(player_score, dealer_score, money, bet)
       puts "you won #{bet}$ and have now #{$money}$ in your account"
     end
   elsif player_score == dealer_score
-    if double == true
+    if $double == true
       $money += (bet * 2) # 1 (bet) + 1 (double)
     else
       $money += bet
@@ -98,7 +110,9 @@ def end_game_message(player_score, dealer_score, money, bet)
       puts "You lost #{bet}$ and have now #{$money}$ in your account"
     end
   end
-  3.times do
-    sleep_and_line_break(1)
+  gets.chomp
+  2.times do
+    sleep_and_line_break(0.2)
   end
+  
 end
