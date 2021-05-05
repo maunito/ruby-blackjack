@@ -19,13 +19,11 @@ until $money <= 4.99 do
   puts 'press enter to play (5$)'
 
   game_start = gets.chomp
-  if game_start != "haahsjkfn"
+  if game_start != "exit" || game_start != "quit" # = exitcode
     $money -= bet
 
     dealer_score = values.sample
-    player_score = player_start(values, bet)
-
-    puts state_of_the_game(player_score, dealer_score)
+    player_score = player_start(player_score, values, bet, dealer_score)
 
     if player_score == 21
       puts 'Blackjack!'
@@ -71,10 +69,9 @@ until $money <= 4.99 do
       (dealer_card2 = values.sample)
       dealer_score += dealer_card2
       puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
-      sleep_and_line_break(2)
+      gets.chomp
     end
     
     end_game_message(player_score, dealer_score, bet)
-    new_game
   end
 end
