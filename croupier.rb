@@ -84,7 +84,6 @@ def game_start(bet, values, random_card)
   end_game_message(player_score, dealer_score, bet)
 end
 
-
 def player_start(values, bet, dealer_score)
   player_card1 = values.sample
   player_card2 = values.sample
@@ -129,7 +128,7 @@ def state_of_the_game(player_score, dealer_score)
 end
 
 def end_game_message(player_score, dealer_score, bet)
-  if player_score == 21
+  if player_score == 21 && dealer_score != 21
     if $double == true
       $money += (bet * 4) # 1 (bet) + 1.5 (blackjack) * 1 (double)
       puts "Wow! You won #{bet * 4}$ and have now #{$money}$ in your account"
@@ -156,8 +155,8 @@ def end_game_message(player_score, dealer_score, bet)
       $money += (bet * 2) # 1 (bet) + 1 (double)
     else
       $money += bet
-      puts "Push - You get your bet back (#{bet}$)"
     end
+    puts "Push - You get your bet back (#{bet}$)"
   elsif player_score > dealer_score 
     if $double == true
       $money += (bet * 3) # 1 (bet) + 1 (win) + 1 (double)
@@ -174,5 +173,4 @@ def end_game_message(player_score, dealer_score, bet)
     end
   end
   gets.chomp
-  sleep_and_line_break(0.2)
 end
