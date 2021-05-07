@@ -51,11 +51,11 @@ def game_start(bet, values, random_card)
     puts ""
     else # $double == true
       player_score += random_card
-      puts "You pulled a #{random_card}"
-      sleep_and_line_break(1)
+      puts "You pulled a #{random_card} and have now #{player_score}"
       gets.chomp
-      card = 'no'
       sleep_and_line_break(0.5)
+      card = 'no'
+
     end
   end
 
@@ -73,7 +73,7 @@ def game_start(bet, values, random_card)
         card == 'no'
       end
     elsif player_score == 21
-      '21!'
+      puts '21!'
       gets.chomp
     end
   end
