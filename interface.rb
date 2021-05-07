@@ -14,62 +14,8 @@ values = [2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A]
 random_card = values.sample
 
 until $money <= 4.99 do
-  new_game
-  greeting
-  game_start = gets.chomp
-  if game_start != "exit" || game_start != "quit" # = exitcode
-    $money -= bet
-
-    dealer_score = values.sample
-    player_score = player_start(player_score, values, bet, dealer_score)
-
-    if player_score == 21
-      puts 'Blackjack!'
-      gets.chomp
-
-    # elsif player_score == 22
-    #   player_score = 12
-    elsif player_score < 21 
-      if $double == false
-      puts 'another card? [ y / n ]'
-      card = gets.chomp
-      puts ""
-      else # $double == true
-        player_score += random_card
-        puts "You pulled a #{random_card}"
-        sleep_and_line_break(1)
-        gets.chomp
-        card = 'no'
-        sleep_and_line_break(0.5)
-      end
-    end
-
-    until card == 'no' || card == 'n' || player_score >= 21
-      player_score += random_card
-      puts "You pulled a #{random_card}"
-      sleep_and_line_break(1)
-      puts state_of_the_game(player_score, dealer_score)
-      gets.chomp
-      if player_score < 21 
-        if $double == false
-          puts 'another card? [ y / n ]'
-          card = gets.chomp
-        else
-          card == 'no'
-        end
-      elsif player_score == 21
-        '21!'
-        gets.chomp
-      end
-    end
-
-    until dealer_score >= 17
-      (dealer_card2 = values.sample)
-      dealer_score += dealer_card2
-      puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
-      gets.chomp
-    end
-    
-    end_game_message(player_score, dealer_score, bet)
-  end
+  new_game # function to display new game banner
+  greeting # welcome message and prompt user to start game
+  gets.chomp # palyer has to hit enter to continue
+  game_start(bet, values, random_card) # game start function
 end
