@@ -67,8 +67,10 @@ def game_start(bet, values, random_card)
       if $double == false
         puts 'another card? [ y / n ]'
         card = gets.chomp
+        sleep_and_line_break(0.5)
       else
         card == 'no'
+        gets.chomp
       end
     elsif player_score == 21
       puts '21!'
@@ -92,7 +94,7 @@ def player_start(values, bet, dealer_score)
     player_score -= 10 
     puts "you have 11 and 1   -   the dealer has a #{dealer_score}"
   else
-    puts "you have #{player_card1} and #{player_card2}  -   the dealer has a #{dealer_score}"
+    puts "you have #{player_card1} and #{player_card2}  -  the dealer has a #{dealer_score}"
   end
   gets.chomp
   if $money >= 5 && player_score < 21
