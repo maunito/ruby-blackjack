@@ -48,7 +48,7 @@ def game_start(bet, values, random_card)
     if $double == false
     puts 'another card? [ y / n ]'
     card = gets.chomp
-    puts ""
+    puts ''
     else # $double == true
       player_score += random_card
       puts "You pulled a #{random_card} and have now #{player_score}"
@@ -116,15 +116,15 @@ def player_start(values, bet, dealer_score)
   player_score
 end
 
+def state_of_the_game(player_score, dealer_score)
+  "Your score is #{player_score} - The dealer's score is #{dealer_score}."
+end
+
 def sleep_and_line_break(n)
   1.upto(1) do
     puts ''
     sleep n # second
   end
-end
-
-def state_of_the_game(player_score, dealer_score)
-  "Your score is #{player_score} - The dealer's score is #{dealer_score}."
 end
 
 def end_game_message(player_score, dealer_score, bet)
@@ -138,14 +138,14 @@ def end_game_message(player_score, dealer_score, bet)
     end
   elsif player_score > 21
     if $double == true 
-      puts "Over 21, you lost #{bet *2}$ and have now #{$money}$ in your account"
+      puts "Over 21, you lost #{bet * 2}$ and have now #{$money}$ in your account"
     else
-      puts "Over 21, you lost #{bet *2}$ and have now #{$money}$ in your account"
+      puts "Over 21, you lost #{bet}$ and have now #{$money}$ in your account"
     end
   elsif dealer_score > 21
     if $double == true
-      $money += (bet * 3) # 1 (bet) + 1 (win) + 1 (double)
-      puts "you won #{bet * 3}$ and have now #{$money}$ in your account"
+      $money += (bet * 4) # 2 (bet) + 1 (win) + 1 (double)
+      puts "you won #{bet * 4}$ and have now #{$money}$ in your account"
     else
       $money += (bet * 2) # 1 (bet) + 1 (win)
       puts "you won #{bet * 2}$ and have now #{$money}$ in your account"
@@ -157,10 +157,10 @@ def end_game_message(player_score, dealer_score, bet)
       $money += bet
     end
     puts "Push - You get your bet back (#{bet}$)"
-  elsif player_score > dealer_score 
+  elsif player_score > dealer_score
     if $double == true
-      $money += (bet * 3) # 1 (bet) + 1 (win) + 1 (double)
-      puts "you won #{bet * 3}$ and have now #{$money}$ in your account"
+      $money += (bet * 4) # 2 (bet) + 1 (win) + 1 (double)
+      puts "you won #{bet * 4}$ and have now #{$money}$ in your account"
     elsif
       $money += (bet * 2) # 1 (bet) + 1 (win)
       puts "you won #{bet * 2}$ and have now #{$money}$ in your account"
