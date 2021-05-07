@@ -36,7 +36,7 @@ def game_start(bet, values, random_card)
   $money -= bet
 
   dealer_score = values.sample
-  player_score = player_start(player_score, values, bet, dealer_score)
+  player_score = player_start(values, bet, dealer_score)
 
   if player_score == 21
     puts 'Blackjack!'
@@ -85,9 +85,8 @@ def game_start(bet, values, random_card)
 end
 
 
-def player_start(player_score, values, bet, dealer_score)
+def player_start(values, bet, dealer_score)
   player_card1 = values.sample
-
   player_card2 = values.sample
   player_score = player_card1 + player_card2
   if player_score == 22
@@ -171,11 +170,9 @@ def end_game_message(player_score, dealer_score, bet)
     if $double == true
       puts "You lost #{bet * 2}$ and have now #{$money}$ in your account"
     else
-      puts "You lost #{bet * 2}$ and have now #{$money}$ in your account"
+      puts "You lost #{bet}$ and have now #{$money}$ in your account"
     end
   end
   gets.chomp
-
   sleep_and_line_break(0.2)
-  
 end
