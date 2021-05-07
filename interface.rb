@@ -16,7 +16,7 @@ random_card = values.sample
 until $money <= 4.99 do
   new_game
   puts "Welcome to Blackjack. Your balance is #{$money}$"
-  puts 'press enter to play (5$)'
+  puts '          press enter to play (5$)'
 
   game_start = gets.chomp
   if game_start != "exit" || game_start != "quit" # = exitcode

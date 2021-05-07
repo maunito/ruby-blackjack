@@ -37,14 +37,13 @@ def player_start(player_score, values, bet, dealer_score)
   player_score = player_card1 + player_card2
   if player_score == 22
     player_score -= 10 
-    puts "you have 11 and 1"
+    puts "you have 11 and 1   -   the dealer has a #{dealer_score}"
   else
-    puts "you have #{player_card1} and #{player_card2}"
+    puts "you have #{player_card1} and #{player_card2}  -   the dealer has a #{dealer_score}"
   end
-  puts "the dealer has a #{dealer_score}"
   gets.chomp
   if $money >= 5 && player_score < 21
-    puts 'Do you want to double your bet and draw 1 more card? [ y / n ]'
+    puts 'Do you want to double your bet (and draw 1 more card)? [ y / n ]'
     # puts 'Do you want to'
     # puts '1) draw another card'
     # puts '2) double bet'
@@ -121,8 +120,7 @@ def end_game_message(player_score, dealer_score, bet)
     end
   end
   gets.chomp
-  2.times do
-    sleep_and_line_break(0.2)
-  end
+
+  sleep_and_line_break(0.2)
   
 end
