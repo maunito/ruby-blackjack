@@ -153,15 +153,16 @@ def end_game_message(player_score, dealer_score, bet)
   elsif player_score == dealer_score
     if $double == true
       $money += (bet * 2) # 1 (bet) + 1 (double)
+      puts "Push - You get your bet back (#{bet * 2}$)"
     else
       $money += bet
+      puts "Push - You get your bet back (#{bet}$)"
     end
-    puts "Push - You get your bet back (#{bet}$)"
   elsif player_score > dealer_score
     if $double == true
       $money += (bet * 4) # 2 (bet) + 1 (win) + 1 (double)
       puts "you won #{bet * 4}$ and have now #{$money}$ in your account"
-    elsif
+    else
       $money += (bet * 2) # 1 (bet) + 1 (win)
       puts "you won #{bet * 2}$ and have now #{$money}$ in your account"
     end
