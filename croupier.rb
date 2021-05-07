@@ -53,9 +53,7 @@ def game_start(bet, values, random_card)
       player_score += random_card
       puts "You pulled a #{random_card} and have now #{player_score}"
       gets.chomp
-      sleep_and_line_break(0.5)
       card = 'no'
-
     end
   end
 
