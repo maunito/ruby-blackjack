@@ -19,7 +19,10 @@
 # SECONDARY should give the oppertunity to split the cards
 # TODO puts pulled cards aside and
 # (1/2) takes into account that A can be 1 or 11 even consider 3 or 4 Aces"
-
+def greeting
+  puts "Welcome to Blackjack. Your balance is #{$money}$"
+  puts '          press enter to play (5$)'
+end
 
 
 def new_game
