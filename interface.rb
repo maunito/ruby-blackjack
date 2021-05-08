@@ -1,7 +1,6 @@
 require_relative 'croupier'
 
-$money = 20
-bet = 5
+$money = 50
 $double = false
 
 J = 10
@@ -17,5 +16,5 @@ until $money <= 4.99 do
   new_game # function to display new game banner
   greeting # welcome message and prompt user to start game
   gets.chomp # palyer has to hit enter to continue
-  game_start(bet, values, random_card) # game start function
+  game_start(values, random_card) # game start function
 end

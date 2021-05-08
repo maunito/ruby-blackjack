@@ -29,10 +29,19 @@ end
 
 def greeting
   puts "Welcome to Blackjack. Your balance is #{$money}$"
-  puts '          press enter to play (5$)'
+  puts '          press enter to play ($)'
 end
 
-def game_start(bet, values, random_card)
+def game_start(values, random_card)
+  bet = 0
+  puts 'how much do you want to bet?'
+  until bet > 4.99
+    bet = gets.chomp.to_i
+    sleep_and_line_break(0.5)
+    puts 'Please enter a valid number. Minimum bet is 5$' if bet < 5
+  end
+  puts "you bet #{bet}$"
+  sleep_and_line_break(0.5)
   $money -= bet
 
   dealer_score = values.sample
@@ -69,7 +78,7 @@ def game_start(bet, values, random_card)
         card = gets.chomp
         sleep_and_line_break(0.5)
       else
-        card == 'no'
+        card = 'no'
         gets.chomp
       end
     elsif player_score == 21
@@ -97,7 +106,7 @@ def player_start(values, bet, dealer_score)
     puts "you have #{player_card1} and #{player_card2}  -  the dealer has a #{dealer_score}"
   end
   gets.chomp
-  if $money >= 5 && player_score < 21
+  if $money >= bet && player_score < 21
     puts 'Do you want to double your bet (and draw 1 more card)? [ y / n ]'
     # puts 'Do you want to'
     # puts '1) draw another card'
@@ -176,4 +185,10 @@ def end_game_message(player_score, dealer_score, bet)
     end
   end
   gets.chomp
+  if $money < 5
+    puts '----------------------------------------------'
+    puts '                GAME OVER                     '
+    puts '----------------------------------------------'
+    gets.chomp
+  end
 end
