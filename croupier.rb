@@ -24,7 +24,7 @@ def new_game
   sleep(0.5)
   puts '----------------------------------------------'
   puts '                   NEW GAME                   '
-  puts "Credit: #{$money}$                        min-bet: 5$"
+  puts "min-bet: 5$                        Credit: #{$money}$"
   puts '----------------------------------------------'
 end
 
@@ -92,12 +92,14 @@ def game_start(values, random_card)
       gets.chomp
     end
   end
+  sleep_and_line_break(0.5)
   until dealer_score >= 17
     (dealer_card2 = values.sample)
     dealer_score += dealer_card2
     puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
     gets.chomp
   end
+  sleep_and_line_break(0.5)
   end_game_message(player_score, dealer_score, bet)
 end
 
@@ -200,7 +202,9 @@ def end_game_message(player_score, dealer_score, bet)
     won = false
   end
 
-  if won == true
+  if $money < 5
+    game_over
+  elsif won == true
     you_won
   elsif won == false
     you_lost
@@ -209,7 +213,6 @@ def end_game_message(player_score, dealer_score, bet)
   end
   gets.chomp
 
-  game_over
 end
 
 def you_won
