@@ -36,7 +36,7 @@ end
 def game_start(values, random_card)
   bet = 0
   puts 'How much do you want to bet?'
-  until bet > 4.99
+  until bet > 4.99 && $money >= bet
     bet = gets.chomp.to_i
     sleep_and_line_break(0.5)
     puts 'Please enter a valid number. Minimum bet is 5$' if bet < 5
@@ -69,7 +69,12 @@ def game_start(values, random_card)
 
   until card == 'no' || card == 'n' || player_score >= 21
     player_score += random_card
-    puts "You pulled a #{random_card}"
+    if random_card == 11 && player_score > 21
+      player_score -= 10
+      puts 'You pulled an Ace'
+    else
+      puts "You pulled a #{random_card}"
+    end
     sleep_and_line_break(1)
     puts state_of_the_game(player_score, dealer_score)
     gets.chomp
@@ -124,6 +129,8 @@ def player_start(values, bet, dealer_score)
     else
       $double = false
     end
+  else
+    $double = false
   end
   player_score
 end
@@ -202,12 +209,7 @@ def end_game_message(player_score, dealer_score, bet)
   end
   gets.chomp
 
-  if $money < 5
-    puts '----------------------------------------------'
-    puts '                GAME OVER                     '
-    puts '----------------------------------------------'
-    gets.chomp
-  end
+  game_over
 end
 
 def you_won
@@ -226,4 +228,13 @@ def you_pushed
   puts '----------------------------------------------'
   puts '                   PUSH                       '
   puts '----------------------------------------------'
+end
+
+def game_over
+  if $money < 5
+    puts '----------------------------------------------'
+    puts '                GAME OVER                     '
+    puts '----------------------------------------------'
+    gets.chomp
+  end
 end
