@@ -105,12 +105,12 @@ def game_start(values, random_card)
     dealer_card2 = values.sample
     # The 3 lines below is only for testing and being able to choose computer card
     # puts '[Test - choose computer card]'
-    # dealer_card2 = gets.chomp
+    # dealer_card2 = gets.chomp.to_i
     # puts '[Test end]'
     dealer_score += dealer_card2
     if dealer_card2 == 11 && dealer_score > 21
       dealer_score -= 10
-      puts 'The dealer pulled an Ace'
+      puts "The dealer pulled an Ace and has now #{dealer_score}"
     else
       puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
       gets.chomp
