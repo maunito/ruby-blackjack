@@ -38,7 +38,8 @@ def game_start(values, random_card)
   bet = gets.chomp.to_i
   if bet < 4.99 || $money < bet
     until bet > 4.99 && $money >= bet
-      puts 'Please enter a valid number. Minimum bet is 5$' if bet < 5
+      sleep_and_line_break(0.5)
+      puts "Please enter a valid number. Minimum bet is 5$, maximum you can afford is #{$money}."
       print 'bet: '
       bet = gets.chomp.to_i
     end
