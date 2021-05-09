@@ -125,7 +125,7 @@ def player_start(values, bet, dealer_score)
   player_card2 = values.sample
   player_score = player_card1 + player_card2
   if player_score == 22
-    player_score -= 10 
+    player_score -= 10
     puts "you have 11 and 1   -   the dealer has a #{dealer_score}"
   else
     puts "you have #{player_card1} and #{player_card2}  -  the dealer has a #{dealer_score}"
