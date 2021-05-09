@@ -15,7 +15,6 @@
 # should show 1 dealer card, then ask for double
 # refactored if statements
 
-
 # SECONDARY should give the oppertunity to split the cards
 # TODO puts pulled cards aside and
 # (1/2) takes into account that A can be 1 or 11 even consider 3 or 4 Aces"
@@ -30,16 +29,19 @@ end
 
 def greeting
   puts "   Welcome to Blackjack. Your balance is #{$money}$ "
-  puts '            press enter to play ($)'
+  puts '       How much do you want to bet? ($)'
 end
 
 def game_start(values, random_card)
-  bet = 0
-  puts 'How much do you want to bet?'
-  until bet > 4.99 && $money >= bet
-    bet = gets.chomp.to_i
-    sleep_and_line_break(0.5)
-    puts 'Please enter a valid number. Minimum bet is 5$' if bet < 5
+  sleep_and_line_break(0.1)
+  print "bet: "
+  bet = gets.chomp.to_i
+  if bet < 4.99 || $money < bet
+    until bet > 4.99 && $money >= bet
+      puts 'Please enter a valid number. Minimum bet is 5$' if bet < 5
+      print 'bet: '
+      bet = gets.chomp.to_i
+    end
   end
   puts "you bet #{bet}$"
   sleep_and_line_break(0.5)
