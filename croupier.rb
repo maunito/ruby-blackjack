@@ -39,7 +39,8 @@ def game_start(values, random_card)
   if bet < 4.99 || $money < bet
     until bet > 4.99 && $money >= bet
       sleep_and_line_break(0.5)
-      puts "Please enter a valid number. Minimum bet is 5$, maximum you can afford is #{$money}."
+      puts 'Please enter a valid number. Minimum bet is 5$'
+      puts "Maximum you can afford is #{$money}."
       print 'bet: '
       bet = gets.chomp.to_i
     end
@@ -63,6 +64,7 @@ def game_start(values, random_card)
     card = gets.chomp
     puts ''
     else # $double == true
+      random_card = values.sample
       player_score += random_card
       puts "You pulled a #{random_card} and have now #{player_score}"
       gets.chomp
@@ -71,6 +73,7 @@ def game_start(values, random_card)
   end
 
   until card == 'no' || card == 'n' || player_score >= 21
+    random_card = values.sample
     player_score += random_card
     if random_card == 11 && player_score > 21
       player_score -= 10
@@ -81,7 +84,7 @@ def game_start(values, random_card)
     sleep_and_line_break(1)
     puts state_of_the_game(player_score, dealer_score)
     gets.chomp
-    if player_score < 21 
+    if player_score < 21
       if $double == false
         puts 'another card? [ y / n ]'
         card = gets.chomp
@@ -118,7 +121,7 @@ def player_start(values, bet, dealer_score)
   end
   gets.chomp
   if $money >= bet && player_score < 21
-    puts 'Do you want to double your bet (and draw 1 more card)? [ y / n ]'
+    puts 'Do you want to double your bet (+ draw 1 card)? [ y / n ]'
     # puts 'Do you want to'
     # puts '1) draw another card'
     # puts '2) double bet'
@@ -204,6 +207,7 @@ def end_game_message(player_score, dealer_score, bet)
     end
     won = false
   end
+  sleep_and_line_break(0.5)
 
   if $money < 5
     game_over
