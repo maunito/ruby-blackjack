@@ -73,6 +73,7 @@ def game_start(values, random_card)
   end
 
   until card == 'no' || card == 'n' || player_score >= 21
+    # didn#t work without assigning random_card again
     random_card = values.sample
     player_score += random_card
     if random_card == 11 && player_score > 21
@@ -81,9 +82,9 @@ def game_start(values, random_card)
     else
       puts "You pulled a #{random_card}"
     end
-    sleep_and_line_break(1)
-    puts state_of_the_game(player_score, dealer_score)
     gets.chomp
+    puts state_of_the_game(player_score, dealer_score)
+    sleep_and_line_break(0.5)
     if player_score < 21
       if $double == false
         puts 'another card? [ y / n ]'
@@ -100,10 +101,20 @@ def game_start(values, random_card)
   end
   sleep_and_line_break(0.5)
   until dealer_score >= 17
-    (dealer_card2 = values.sample)
+    # didn#t work with random_card
+    dealer_card2 = values.sample
+    # The 3 lines below is only for testing and being able to choose computer card
+    # puts '[Test - choose computer card]'
+    # dealer_card2 = gets.chomp
+    # puts '[Test end]'
     dealer_score += dealer_card2
-    puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
-    gets.chomp
+    if dealer_card2 == 11 && dealer_score > 21
+      dealer_score -= 10
+      puts 'The dealer pulled an Ace'
+    else
+      puts "The dealer pulled a #{dealer_card2} and has now #{dealer_score}"
+      gets.chomp
+    end
   end
   sleep_and_line_break(0.5)
   end_game_message(player_score, dealer_score, bet)
@@ -121,7 +132,7 @@ def player_start(values, bet, dealer_score)
   end
   gets.chomp
   if $money >= bet && player_score < 21
-    puts 'Do you want to double your bet (+ draw 1 card)? [ y / n ]'
+    puts 'Do you want to double your bet (and draw 1 card)? [ y / n ]'
     # puts 'Do you want to'
     # puts '1) draw another card'
     # puts '2) double bet'
@@ -140,7 +151,7 @@ def player_start(values, bet, dealer_score)
   else
     $double = false
   end
-  player_score
+  player_score # is a variable, no method
 end
 
 def state_of_the_game(player_score, dealer_score)
