@@ -73,7 +73,7 @@ def game_start(values, random_card)
   end
 
   until card == 'no' || card == 'n' || player_score >= 21
-    # didn#t work without assigning random_card again
+    # didn't work without assigning random_card again
     random_card = values.sample
     player_score += random_card
     if random_card == 11 && player_score > 21
@@ -256,6 +256,5 @@ def game_over
     puts '----------------------------------------------'
     puts '                GAME OVER                     '
     puts '----------------------------------------------'
-    gets.chomp
   end
 end
